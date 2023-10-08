@@ -4,9 +4,11 @@
 - BBDD multitenant
 
 ### Instalación
+- Activar venv
 ```bash
 cd api
-pip install -r requirements/base.txt
+pip install -r requirements/development.txt
+pre-commit install
 docker-compose up -d # Corre la db en modo daemon
 ```
 
@@ -24,7 +26,7 @@ docker-compose up -d # Corre la db en modo daemon
 	- culture_space:
 	- type: INSTAGRAM, FB, etc.
 	- identifier
-- `EventOcurrency`: 
+- `EventOcurrency`:
 	- Name
 	- Datetime
 	- Description
