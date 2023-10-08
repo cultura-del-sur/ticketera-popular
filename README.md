@@ -3,7 +3,16 @@
 ## Backend con Django
 - BBDD multitenant
 
-## Modelo de datos
+### Instalación
+- Activar venv
+```bash
+cd api
+pip install -r requirements/development.txt
+pre-commit install
+docker-compose up -d # Corre la db en modo daemon
+```
+
+### Modelo de datos
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
 - `CultureSpace`: espacio cultural, teatro, sala, etc.
@@ -17,7 +26,7 @@
 	- culture_space:
 	- type: INSTAGRAM, FB, etc.
 	- identifier
-- `EventOcurrency`: 
+- `EventOcurrency`:
 	- Name
 	- Datetime
 	- Description
