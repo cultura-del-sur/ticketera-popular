@@ -3,7 +3,14 @@
 ## Backend con Django
 - BBDD multitenant
 
-## Modelo de datos
+### Instalación
+```bash
+cd api
+pip install -r requirements/base.txt
+docker-compose up -d # Corre la db en modo daemon
+```
+
+### Modelo de datos
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
 - `CultureSpace`: espacio cultural, teatro, sala, etc.
