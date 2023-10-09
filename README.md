@@ -35,7 +35,7 @@ Los tests se configuran en el archivo `pytest.ini` donde se indica el archivo se
 ### Modelo de datos
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
-- `CultureSpace`: espacio cultural, teatro, sala, etc.
+- `CultureVenue`: espacio cultural, teatro, sala, etc.
 	- name:
 	- type:
 	- address:
