@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from ticket_manager.shared.models import BaseModel
+from shared.models import BaseModel
 
 
 class User(AbstractBaseUser):
