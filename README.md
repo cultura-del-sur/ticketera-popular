@@ -15,7 +15,7 @@ docker-compose up -d # Corre la db en modo daemon
 ### Modelo de datos
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
-- `CultureSpace`: espacio cultural, teatro, sala, etc.
+- `CultureVenue`: espacio cultural, teatro, sala, etc.
 	- name:
 	- type:
 	- address:
