@@ -12,6 +12,26 @@ pre-commit install
 docker-compose up -d # Corre la db en modo daemon
 ```
 
+### Testing
+#### Correr los tests
+```bash
+cd api/ticket_manager
+pytest
+```
+
+#### Escribir un test
+Usamos pytest y pytest-django para testear. Un ejemplo:
+```python
+import pytest
+
+
+@pytest.mark.django_db # Permite el acceso a DB
+def test_example():
+    assert 1 == 1
+```
+#### Configuración
+Los tests se configuran en el archivo `pytest.ini` donde se indica el archivo settings de django y el patrón para hacer discovery de los tests. Por el momento el archivo de configuración no es muy interesante pero es buena idea tenerlo separado.
+
 ### Modelo de datos
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
