@@ -1,2 +1,4 @@
 -r base.txt
 pre-commit
+pytest==7.4.2
+pytest-django==4.5.2
