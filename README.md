@@ -36,38 +36,64 @@ Los tests se configuran en el archivo `pytest.ini` donde se indica el archivo se
 
 - `User`: personas que administran la venta de entradas en un `CultureSpace`. Ver 2FA
 - `CultureVenue`: espacio cultural, teatro, sala, etc.
-	- name:
-	- type:
-	- address:
-	- email:
-	- contact_user:
-	- mp_account:
+  - name:
+  - type:
+  - address:
+  - email:
+  - contact_user:
+  - mp_account:
 - `SocialNetwork`:
-	- culture_space:
-	- type: INSTAGRAM, FB, etc.
-	- identifier
+  - culture_space:
+  - type: INSTAGRAM, FB, etc.
+  - identifier
 - `EventOcurrency`:
-	- Name
-	- Datetime
-	- Description
-	- Pictures...:
-	- `CultureSpace`
-	- tags: M2M `Tag`
+  - Name
+  - Datetime
+  - Description
+  - Pictures...:
+  - `CultureSpace`
+  - tags: M2M `Tag`
 - `Tag`
-	- name
-	- color
+  - name
+  - color
 - `Ticket`
-	- token
-	- event_ocurrency
-	- customer
+  - token
+  - event_ocurrency
+  - customer
 - `Customer`
-	- email
-	- name
-	- birthdate
-	- interest:
-	- allow_recomendations
+  - email
+  - name
+  - birthdate
+  - interest:
+  - allow_recomendations
 - `CustomerTagCount`
-	- tag
-	- count
-	- customer
-	- last_increment
+  - tag
+  - count
+  - customer
+  - last_increment
+
+
+## BBDD
+
+Para ingresar por `psql` a la base de datos:
+```bash
+docker-compose exec db psql -U postgres
+```
+
+Seleccionar bbdd postgres
+```sql
+\c postgres
+```
+
+Ver todas las tablas
+```sql
+\dt
+```
+
+Eliminar el contenido de toda la base de datos
+```sql
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+```
