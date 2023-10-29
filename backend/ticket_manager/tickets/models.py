@@ -1,17 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
 from shared.models import BaseModel
-
-
-class User(AbstractBaseUser):
-    """
-    Describes a user of the system
-    """
-
-    email = models.EmailField(unique=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    USERNAME_FIELD = "email"
 
 
 class Customer(BaseModel):
@@ -44,15 +32,15 @@ class Event(BaseModel):
     description = models.TextField()
     culture_venue = models.ForeignKey("CultureVenue", on_delete=models.CASCADE)
     datetime = models.DateTimeField()
+    tags = models.ManyToManyField("Tag")
 
 
-class EventTag(BaseModel):
+class Tag(BaseModel):
     """
     Describes a tag for an event (e.g. "Música", "Teatro", "Cine", etc.)
     """
 
-    name = models.CharField(max_length=100)
-    event = models.ForeignKey("Event", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, primary_key=True)
 
 
 class Ticket(BaseModel):
@@ -61,7 +49,7 @@ class Ticket(BaseModel):
     """
 
     event = models.ForeignKey("Event", on_delete=models.CASCADE)
-    ticket_type = models.ForeignKey("TicketType", on_delete=models.CASCADE)
+    event_ticket_type = models.ForeignKey("EventTicketType", on_delete=models.CASCADE)
     token = models.CharField(max_length=240, unique=True)
     customer = models.ForeignKey("Customer", default=None, on_delete=models.CASCADE)
     marked = models.BooleanField(default=False)
@@ -73,6 +61,24 @@ class TicketType(BaseModel):
     """
 
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    slug = models.SlugField(max_length=100)
+
+
+class EventTicketType(BaseModel):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    ticket_type = models.ForeignKey("TicketType", on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     released_quantity = models.IntegerField(default=1)
+
+    class Meta:
+        # UniqueConstraint between ticket_type and event
+        # (see https://docs.djangoproject.com/en/4.2/ref/models/constraints/#uniqueconstraint)
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "event",
+                    "ticket_type",
+                ],
+                name="unique_event_ticket_type",
+            )
+        ]
