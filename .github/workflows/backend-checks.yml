@@ -40,15 +40,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          cd api
+          cd backend
           pip install -r requirements/development.txt
       - name: Run pre-commit
         run: |
-          cd api
+          cd backend
           pre-commit run --all-files
       - name: Test with django
         env:
           DJANGO_SETTINGS_MODULE: ticket_manager.settings.testing
         run: |
-          cd api/ticket_manager
+          cd backend/ticket_manager
           pytest
