@@ -6,7 +6,7 @@
 ### Instalación
 - Activar venv
 ```bash
-cd api
+cd backend
 pip install -r requirements/development.txt
 pre-commit install
 docker-compose up -d # Corre la db en modo daemon
@@ -15,7 +15,7 @@ docker-compose up -d # Corre la db en modo daemon
 ### Testing
 #### Correr los tests
 ```bash
-cd api/ticket_manager
+cd backend/ticket_manager
 pytest
 ```
 
