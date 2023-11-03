@@ -11,17 +11,14 @@ on:
 
 jobs:
   check_missing_migrations:
+    name: Check missing migrations
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.10
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -34,17 +31,14 @@ jobs:
           cd backend/ticket_manager
           python manage.py makemigrations --dry-run --check --no-input
   run_pre_commit:
+    name: Run pre-commit in all files
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.10
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -55,6 +49,7 @@ jobs:
           cd backend
           pre-commit run --all-files
   build:
+    name: Django tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
