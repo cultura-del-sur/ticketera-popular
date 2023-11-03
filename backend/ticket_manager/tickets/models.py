@@ -41,7 +41,6 @@ class Tag(BaseModel):
     """
 
     name = models.CharField(max_length=100, primary_key=True)
-    campo = models.CharField(max_length=20, null=True)
 
 
 class Ticket(BaseModel):
