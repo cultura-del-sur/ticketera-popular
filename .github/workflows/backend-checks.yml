@@ -10,7 +10,32 @@ on:
     branches: [main]
 
 jobs:
+  check_missing_migrations:
+    name: Check missing migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ../.github/workflows/python-dependencies.yml
+        with:
+          python-version: '3.10'
+      - name: Check missing migrations
+        env:
+          DJANGO_SETTINGS_MODULE: ticket_manager.settings.testing
+        run: |
+          cd backend/ticket_manager
+          python manage.py makemigrations --dry-run --check --no-input
+  run_pre_commit:
+    name: Run pre-commit in all files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ../.github/workflows/python-dependencies.yml
+        with:
+          python-version: '3.10'
+      - name: Run pre-commit
+        run: |
+          cd backend
+          pre-commit run --all-files
   build:
+    name: Django tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,28 +55,11 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - uses: ../.github/workflows/python-dependencies.yml
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          cd backend
-          pip install -r requirements/development.txt
-      - name: Run pre-commit
-        run: |
-          cd backend
-          pre-commit run --all-files
-      - name: Check missing migrations
-        env:
-          DJANGO_SETTINGS_MODULE: ticket_manager.settings.testing
-        run: |
-          cd backend/ticket_manager
-          python manage.py makemigrations --dry-run --check --no-input
+          python-version:  ${{ matrix.python-version }}
       - name: Test with django
         env:
           DJANGO_SETTINGS_MODULE: ticket_manager.settings.testing
