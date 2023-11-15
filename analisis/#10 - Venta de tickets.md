@@ -36,3 +36,11 @@ Ticket
   customer = fk(Customer)
   reservation = fk(TicketReservation)
 ```
+
+```python
+class EventTicketType:
+  event = Event()
+  released_quantity = PositiveInteger()
+  available_quantity = PositiveInteger()
+  is_available_for_sale = BooleanField()
+```
