@@ -1,9 +1,8 @@
-
-name: 'Install python dependencies'
-description: 'Install python dependencies'
+name: "Install python dependencies"
+description: "Install python dependencies"
 inputs:
   python-version:
-    description: 'The python version'
+    description: "The python version"
     required: true
 
 runs:
