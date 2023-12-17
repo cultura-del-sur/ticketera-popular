@@ -1,6 +1,7 @@
+import MenuIcon from 'shared/components/Header/MenuIcon'
+import Logo from 'shared/components/Logo'
 import { Column, Container, Row } from 'shared/grid/components'
 import c from './Header.module.scss'
-import Logo from 'shared/components/Logo'
 
 const Header = () => {
   return (
@@ -9,8 +10,8 @@ const Header = () => {
         <Column className={c.logoZone}><Logo /></Column>
         <Column className={c.menuZone}>
           <Row spacing={10}>
-            <Column>B</Column>
             <Column>M</Column>
+            <Column><MenuIcon /></Column>
           </Row>
         </Column>
       </Row>

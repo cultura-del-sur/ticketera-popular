@@ -7,7 +7,7 @@ import 'shared/styles.scss'
 import Header from 'shared/components/Header'
 
 
-export const metadata: Metadata = {
+export const RootLayoutMetadata: Metadata = {
   title: 'Ticketera Popular',
   description: '',
 }
