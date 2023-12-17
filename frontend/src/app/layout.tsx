@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 
 import { TLayout } from 'shared/types'
 
+import { titilliumWeb } from 'shared/fonts'
 import 'shared/styles.scss'
+import Header from 'shared/components/Header'
 
-
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ticketera Popular',
@@ -17,7 +15,10 @@ export const metadata: Metadata = {
 const RootLayout: TLayout = ({children}) => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={titilliumWeb.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
