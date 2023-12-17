@@ -1,9 +1,11 @@
-import MenuIcon from 'shared/components/Header/MenuIcon'
-import Logo from 'shared/components/Logo'
-import { Column, Container, Row } from 'shared/grid/components'
-import c from './Header.module.scss'
 import { COLORS } from 'shared/config'
-import SearchIcon from 'shared/components/Header/SearchIcon'
+import { Column, Container, Row } from 'shared/grid/components'
+import Logo from 'shared/components/Logo'
+import SearchIcon from 'shared/icons/SearchIcon'
+import MenuIcon from 'shared/icons/MenuIcon'
+
+import c from './Header.module.scss'
+
 
 const Header = () => {
   return (
