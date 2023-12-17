@@ -1,0 +1,14 @@
+.main{
+  background: #1f1d1e;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.logoZone{
+  flex:1;
+}
+.menuZone{
+  // flex:1;
+  color: var(--secondary_0)
+}
