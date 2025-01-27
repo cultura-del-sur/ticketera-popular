@@ -70,9 +70,9 @@ class EventTicketType(BaseModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     released_quantity = models.IntegerField(default=1)
 
-    class Meta:
+    class Meta(BaseModel.Meta):
         # UniqueConstraint between ticket_type and event
-        # (see https://docs.djangoproject.com/en/4.2/ref/models/constraints/#uniqueconstraint)
+        # (see https://docs.djangoproject.com/en/5.1/ref/models/constraints/#uniqueconstraint)
         constraints = [
             models.UniqueConstraint(
                 fields=[
