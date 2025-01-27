@@ -1,4 +1,5 @@
 from django.db import models
+from djmoney.models.fields import MoneyField
 from shared.models import BaseModel
 
 
@@ -21,8 +22,11 @@ class Event(BaseModel):
 class EventTicketType(BaseModel):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     ticket_type = models.ForeignKey("tkt_events.TicketType", on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = MoneyField(max_digits=10, decimal_places=2, default_currency="ARS")  # type:ignore
     released_quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.event} {self.ticket_type}"
 
     class Meta(BaseModel.Meta):
         # UniqueConstraint between ticket_type and event
