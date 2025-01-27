@@ -5,6 +5,7 @@ from tkt_tickets.models import (
     Ticket,
 )
 
+
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ("first_name", "last_name", "email")
@@ -16,4 +17,3 @@ class TicketAdmin(admin.ModelAdmin):
     list_display = ("event", "event_ticket_type", "customer", "marked")
     search_fields = ("event__name", "customer__first_name", "customer__last_name")
     list_filter = ("event", "event_ticket_type", "customer", "marked")
-

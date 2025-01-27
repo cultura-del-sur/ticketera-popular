@@ -5,58 +5,103 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('tkt_core', '0001_initial'),
-        ('tkt_venues', '0001_initial'),
+        ("tkt_core", "0001_initial"),
+        ("tkt_venues", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TicketType',
+            name="TicketType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=100)),
-                ('slug', models.SlugField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(max_length=100)),
+                ("slug", models.SlugField(max_length=100)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=240)),
-                ('description', models.TextField()),
-                ('datetime', models.DateTimeField()),
-                ('tags', models.ManyToManyField(to='tkt_core.tag')),
-                ('venue', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tkt_venues.venue')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(max_length=240)),
+                ("description", models.TextField()),
+                ("datetime", models.DateTimeField()),
+                ("tags", models.ManyToManyField(to="tkt_core.tag")),
+                (
+                    "venue",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="tkt_venues.venue",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='EventTicketType',
+            name="EventTicketType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('released_quantity', models.IntegerField(default=1)),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tkt_events.event')),
-                ('ticket_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tkt_events.tickettype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("released_quantity", models.IntegerField(default=1)),
+                (
+                    "event",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="tkt_events.event",
+                    ),
+                ),
+                (
+                    "ticket_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="tkt_events.tickettype",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'constraints': [models.UniqueConstraint(fields=('event', 'ticket_type'), name='unique_event_ticket_type')],
+                "abstract": False,
+                "constraints": [
+                    models.UniqueConstraint(
+                        fields=("event", "ticket_type"), name="unique_event_ticket_type"
+                    )
+                ],
             },
         ),
     ]

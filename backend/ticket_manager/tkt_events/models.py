@@ -1,6 +1,7 @@
 from django.db import models
 from shared.models import BaseModel
 
+
 # Create your models here.
 class Event(BaseModel):
     """
@@ -32,6 +33,7 @@ class EventTicketType(BaseModel):
                 name="unique_event_ticket_type",
             )
         ]
+
 
 class TicketType(BaseModel):
     """

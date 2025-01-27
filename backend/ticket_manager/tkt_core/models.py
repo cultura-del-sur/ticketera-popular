@@ -2,6 +2,7 @@ from django.db import models
 
 from shared.models import BaseModel
 
+
 class Tag(BaseModel):
     """
     Describes a tag for an event (e.g. "Música", "Teatro", "Cine", etc.)

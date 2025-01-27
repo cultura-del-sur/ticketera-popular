@@ -21,11 +21,13 @@ class EventAdmin(admin.ModelAdmin):
         "tags",
     )
 
+
 @admin.register(EventTicketType)
 class EventTicketTypeAdmin(admin.ModelAdmin):
     list_display = ("event", "ticket_type", "price")
     search_fields = ("event__name", "ticket_type__name")
     list_filter = ("event", "ticket_type", "price")
+
 
 @admin.register(TicketType)
 class TicketTypeAdmin(admin.ModelAdmin):
