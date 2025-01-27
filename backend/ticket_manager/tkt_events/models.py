@@ -12,7 +12,10 @@ class Event(BaseModel):
     description = models.TextField()
     venue = models.ForeignKey("tkt_venues.Venue", on_delete=models.CASCADE)
     datetime = models.DateTimeField()
-    tags = models.ManyToManyField("tkt_core.Tag")
+    tags = models.ManyToManyField("tkt_core.Tag", blank=True)
+
+    def __str__(self):
+        return f"{self.venue} - {self.name} ({self.datetime.strftime('%d/%m/%Y, %H:%M')})"
 
 
 class EventTicketType(BaseModel):
@@ -41,4 +44,7 @@ class TicketType(BaseModel):
     """
 
     name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, primary_key=True)
+
+    def __str__(self):
+        return self.slug
