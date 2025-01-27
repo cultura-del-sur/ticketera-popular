@@ -1,13 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 
+class User(AbstractUser):
 
-class User(AbstractBaseUser):
-    """
-    Describes a user of the system
-    """
-
-    email = models.EmailField(unique=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    USERNAME_FIELD = "email"
+    # First and last name do not cover name patterns around the globe
+    name = models.CharField(blank=True, max_length=255)
+    first_name = None  # type: ignore[assignment]
+    last_name = None  # type: ignore[assignment]
