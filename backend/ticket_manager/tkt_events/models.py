@@ -9,7 +9,7 @@ class Event(BaseModel):
     """
 
     name = models.CharField(max_length=240)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     venue = models.ForeignKey("tkt_venues.Venue", on_delete=models.CASCADE)
     datetime = models.DateTimeField()
     tags = models.ManyToManyField("tkt_core.Tag", blank=True)
