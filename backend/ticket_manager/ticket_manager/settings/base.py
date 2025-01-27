@@ -31,8 +31,8 @@ INSTALLED_APPS = [
 ]
 
 PROJECT_APPS = [
-    "users",
-    "tickets",
+    "tkt_users",
+    "tkt_tickets",
 ]
 
 INSTALLED_APPS += PROJECT_APPS
@@ -107,4 +107,4 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "tkt_users.User"

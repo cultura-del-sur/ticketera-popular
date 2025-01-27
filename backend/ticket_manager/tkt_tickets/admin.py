@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tickets.models import (
+from tkt_tickets.models import (
     Customer,
     CultureVenue,
     Event,

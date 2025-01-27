@@ -1,4 +1,5 @@
-version: "3.8"
+name: ticketera-popular-backend-resources
+
 services:
   db:
     image: postgres:16.0-alpine
@@ -7,7 +8,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - "15432:5432"
     volumes:
       - db:/var/lib/postgresql/data_16
 volumes:
