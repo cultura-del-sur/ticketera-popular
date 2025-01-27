@@ -2,6 +2,7 @@ from django.db import models
 
 from shared.models import BaseModel
 
+
 class Venue(BaseModel):
     """
     Describes a (culture) venue ("Espacio Cultural", "Teatro", "Sala", "Biblioteca", etc.)
