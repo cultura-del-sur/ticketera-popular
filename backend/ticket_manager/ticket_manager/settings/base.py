@@ -31,8 +31,11 @@ INSTALLED_APPS = [
 ]
 
 PROJECT_APPS = [
+    "tkt_core",
     "tkt_users",
+    "tkt_venues",
     "tkt_tickets",
+    "tkt_events",
 ]
 
 INSTALLED_APPS += PROJECT_APPS
