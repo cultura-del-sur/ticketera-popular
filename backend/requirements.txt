@@ -4,6 +4,8 @@ cfgv==3.4.0
 distlib==0.3.9
 Django==5.1.5
 django-money==3.5.3
+factory_boy==3.3.3
+Faker==35.2.0
 filelock==3.17.0
 identify==2.6.6
 iniconfig==2.0.0
@@ -17,10 +19,12 @@ psycopg-binary==3.1.12
 py-moneyed==3.0
 pytest==7.4.2
 pytest-django==4.5.2
+python-dateutil==2.9.0.post0
 python-dotenv==1.0.0
 PyYAML==6.0.2
 ruff==0.9.3
 setuptools==75.8.0
+six==1.17.0
 sqlparse==0.5.3
 typing_extensions==4.12.2
 virtualenv==20.29.1
