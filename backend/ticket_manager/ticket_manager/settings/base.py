@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "djmoney",
+    "rest_framework",
 ]
 
 PROJECT_APPS = [
