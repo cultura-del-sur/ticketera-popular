@@ -1,7 +1,11 @@
 import random
 import factory
 from djmoney.money import Money
+
+from shared.services import random_item_from_qs
+from tkt_venues.models import Venue
 from tkt_events.models import Event, EventTicketType, TicketType
+
 from .fake_data import culture_events
 
 
@@ -11,7 +15,7 @@ class EventFactory(factory.django.DjangoModelFactory):
 
     name = factory.LazyFunction(lambda: random.choice(culture_events))
     description = factory.faker.Faker("text")
-    venue = factory.SubFactory("tkt_venues.factories.VenueFactory")
+    venue = factory.LazyFunction(lambda: random_item_from_qs(Venue.objects.all()))
     datetime = factory.Faker("date_time_this_year")
 
 

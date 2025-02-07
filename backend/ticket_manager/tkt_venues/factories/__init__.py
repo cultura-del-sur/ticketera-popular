@@ -10,7 +10,7 @@ class VenueFactory(factory.django.DjangoModelFactory):
         model = Venue
 
     name = name = factory.LazyFunction(lambda: random.choice(underground_venues))
-    address = factory.Faker("address")
+    address = factory.Faker("address", locale="es_AR")
 
 
 class VenuesFactories:

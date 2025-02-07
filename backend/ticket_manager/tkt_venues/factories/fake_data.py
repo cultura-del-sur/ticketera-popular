@@ -1,5 +1,8 @@
 underground_venues = [
     "El Refugio Sonoro",
+    "Casa cultural Victor Jara",
+    "Centro Cultural Raymundo Gleyzer",
+    "Espacio Perfección",
     "Subterráneo Bar",
     "Teatro Espectral",
     "La Fábrica Oculta",
