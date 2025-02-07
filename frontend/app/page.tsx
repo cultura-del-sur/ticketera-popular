@@ -3,7 +3,7 @@ import Ticket from './components/ticket';
 import Footer from "./components/footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Home() {
+ const Home = () => {
   return (
     <> 
     <Navbar />
@@ -17,3 +17,4 @@ export default function Home() {
     </>
   );
 }
+export default Home
