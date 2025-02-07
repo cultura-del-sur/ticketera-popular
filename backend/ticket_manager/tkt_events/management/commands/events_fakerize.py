@@ -14,7 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         methods = {
             "single": EventsFactories.add_single,
-            "complete": EventsFactories.add_event_with_tickets,
+            "complete": EventsFactories.add_event_with_ticket_types,
+            "ticket_types": EventsFactories.add_ticket_types,
         }
 
         if options["method"] is None:

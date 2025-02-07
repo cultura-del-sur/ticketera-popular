@@ -22,7 +22,11 @@ class Event(BaseModel):
 class EventTicketType(BaseModel):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     ticket_type = models.ForeignKey("tkt_events.TicketType", on_delete=models.CASCADE)
-    price = MoneyField(max_digits=10, decimal_places=2, default_currency="ARS")  # type:ignore
+    price = MoneyField(
+        max_digits=10,
+        decimal_places=2,
+        default_currency="ARS",  # type:ignore
+    )
     released_quantity = models.IntegerField(default=1)
 
     def __str__(self):

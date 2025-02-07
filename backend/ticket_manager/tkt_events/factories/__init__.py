@@ -6,7 +6,7 @@ from shared.services import random_item_from_qs
 from tkt_venues.models import Venue
 from tkt_events.models import Event, EventTicketType, TicketType
 
-from .fake_data import culture_events
+from .fake_data import culture_events, ticket_types
 
 
 class EventFactory(factory.django.DjangoModelFactory):
@@ -23,7 +23,7 @@ class TicketTypeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = TicketType
 
-    name = factory.Faker("word")
+    name = factory.LazyFunction(lambda: random.choice(ticket_types))
     slug = factory.LazyAttribute(lambda obj: obj.name.lower().replace(" ", "-"))
 
 
@@ -31,10 +31,15 @@ class EventTicketTypeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = EventTicketType
 
-    event = factory.SubFactory(EventFactory)
-    ticket_type = factory.SubFactory(TicketTypeFactory)
-    price = factory.LazyFunction(lambda: Money(random.randint(1000, 10000), "ARS"))
-    released_quantity = factory.Faker("random_int", min=1, max=500)
+    ticket_type = factory.Iterator(TicketType.objects.all())
+    price = factory.LazyFunction(
+        lambda: Money(random.randint(1000, 10000), "ARS"),
+    )
+    released_quantity = factory.Faker(
+        "random_int",
+        min=50,
+        max=200,
+    )
 
 
 class EventsFactories:
@@ -43,7 +48,12 @@ class EventsFactories:
         return EventFactory.create()
 
     @staticmethod
-    def add_event_with_tickets(ticket_quantity=1):
+    def add_ticket_types():
+        for tt in ticket_types:
+            TicketTypeFactory.create(name=tt)
+
+    @staticmethod
+    def add_event_with_ticket_types(ticket_quantity=5):
         event = EventFactory.create()
         for _ in range(ticket_quantity):
             EventTicketTypeFactory.create(event=event)

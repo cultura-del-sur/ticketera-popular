@@ -20,3 +20,22 @@ culture_events = [
     "Híbridos Sonoros",
     "Distorsión Colectiva",
 ]
+
+ticket_types = [
+    "Entrada General",
+    "Patio",
+    "Anticipadas",
+    "Socios Club Cultura",
+    "Balcón",
+    "Gradas",
+    "Platea Baja",
+    "Platea Alta",
+    "Sector A",
+    "Sector B",
+    "Campo",
+    "Pack Familiar",
+    "Abono Mensual",
+    "Entrada Nocturna",
+    "Zona Experiencia",
+    "Pase Backstage",
+]
