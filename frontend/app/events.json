@@ -1,23 +1,23 @@
  [
     {
       "id" : "Eric Clapton",
-      "tittle": "Gira 2025",
+      "title": "Gira 2025",
       "price": "A confirmar",
       "date": "A confirmar",
       "image": ""
     },
     {
       "id" : "Frank Sinatra",
-      "tittle": "Gira 2025",
+      "title": "Gira 2025",
       "price": "A confirmar",
       "date": "A confirmar",
       "image": ""
     },
-     {
+    {
       "id" : "Aerosmith",
-      "tittle": "Gira 2025",
+      "title": "Gira 2025",
       "price": "A confirmar",
       "date": "A confirmar",
       "image": ""
-     }
+    }
 ]
