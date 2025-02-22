@@ -1,5 +1,6 @@
 'use client';
 
+import { Venue } from '@/lib/data';
 import EventDate from './EventDate';
 import EventLocation from './EventLocation';
 
@@ -7,7 +8,7 @@ interface EventBriefProps {
   title: string;
   description: string;
   date: string;
-  venue: string;
+  venue: Venue;
 }
 
 export default function EventBrief({ title, description, date, venue }: EventBriefProps) {
