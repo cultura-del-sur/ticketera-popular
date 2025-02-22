@@ -1,10 +1,10 @@
 import { Ticket } from 'lucide-react';
 import Link from 'next/link';
 
-import { TicketType } from '@/lib/data';
+import { TicketData } from '@/lib/data';
 
 interface EventAvailableTicketsProps {
-  tickets: TicketType[];
+  tickets: TicketData[];
   eventId: string;
 }
 
@@ -14,7 +14,7 @@ export default function EventAvailableTickets({ tickets, eventId }: EventAvailab
       {tickets.map((ticket, index) => (
         <div key={index} className="border-b border-zinc-200 pb-4 last:border-b-0">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-semibold">{ticket.type}</span>
+            <span className="font-semibold">{ticket.typeLabel}</span>
             <span className="text-xl font-bold">${ticket.price}</span>
           </div>
           <div className="flex items-center justify-between">

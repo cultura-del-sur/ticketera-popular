@@ -9,7 +9,6 @@ import EventDetailTitle from '@/components/EventDetailTitle';
 import EventDate from '@/components/EventDate';
 import EventLocation from '@/components/EventLocation';
 import EventAvailableTickets from '@/components/EventAvailableTickets';
-import BuyEventTicketsForm from '@/components/BuyEventTicketsForm';
 import { z } from 'zod';
 
 const ticketFormSchema = z.object({
@@ -60,10 +59,8 @@ export default function EventPage() {
           <EventDetailTitle title={event.title} description={event.description} />
           <EventDate date={event.date} />
           <EventLocation venue={event.venue} />
-          <EventAvailableTickets tickets={event.tickets} />
+          <EventAvailableTickets tickets={event.tickets} eventId={event.id} />
         </div>
-
-        <BuyEventTicketsForm onSubmit={onSubmit} />
       </div>
     </div>
   );

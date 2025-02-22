@@ -1,5 +1,6 @@
-export interface TicketType {
+export interface TicketData {
   type: string;
+  typeLabel: string;
   price: number;
   availableTickets: number;
 }
@@ -11,7 +12,7 @@ export interface Event {
   date: string;
   venue: string;
   image: string;
-  tickets: TicketType[];
+  tickets: TicketData[];
   tags: string[];
 }
 
@@ -24,8 +25,8 @@ export const events: Event[] = [
     venue: "El Sótano Cultural",
     image: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f",
     tickets: [
-      { type: "General", price: 25.00, availableTickets: 30 },
-      { type: "VIP", price: 45.00, availableTickets: 0 }
+      { type: "general", typeLabel: "General", price: 25.00, availableTickets: 30 },
+      { type: "vip", typeLabel: "VIP", price: 45.00, availableTickets: 0 }
     ],
     tags: ["jazz", "experimental", "electrónica"]
   },
@@ -37,9 +38,9 @@ export const events: Event[] = [
     venue: "Fábrica Abandonada",
     image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
     tickets: [
-      { type: "Early Bird", price: 20.00, availableTickets: 50 },
-      { type: "Regular", price: 30.00, availableTickets: 30 },
-      { type: "Premium", price: 50.00, availableTickets: 20 }
+      { type: "early-bird", typeLabel: "Early Bird", price: 20.00, availableTickets: 50 },
+      { type: "regular", typeLabel: "Regular", price: 30.00, availableTickets: 30 },
+      { type: "premium", typeLabel: "Premium", price: 50.00, availableTickets: 20 }
     ],
     tags: ["arte sonoro", "experimental", "noise"]
   },
@@ -51,8 +52,8 @@ export const events: Event[] = [
     venue: "Biblioteca Alternativa",
     image: "https://images.unsplash.com/photo-1468164016595-6108e4c60c8b",
     tickets: [
-      { type: "Estudiante", price: 10.00, availableTickets: 15 },
-      { type: "General", price: 15.00, availableTickets: 15 }
+      { type: "estudiante", typeLabel: "Estudiante", price: 10.00, availableTickets: 15 },
+      { type: "general", typeLabel: "General", price: 15.00, availableTickets: 15 }
     ],
     tags: ["poesía", "drone", "ambient"]
   }
