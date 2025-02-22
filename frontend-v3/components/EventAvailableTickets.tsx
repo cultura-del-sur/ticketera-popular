@@ -1,12 +1,14 @@
 import { Ticket } from 'lucide-react';
+import Link from 'next/link';
 
 import { TicketType } from '@/lib/data';
 
 interface EventAvailableTicketsProps {
   tickets: TicketType[];
+  eventId: string;
 }
 
-export default function EventAvailableTickets({ tickets }: EventAvailableTicketsProps) {
+export default function EventAvailableTickets({ tickets, eventId }: EventAvailableTicketsProps) {
   return (
     <div className="space-y-4">
       {tickets.map((ticket, index) => (
@@ -15,9 +17,23 @@ export default function EventAvailableTickets({ tickets }: EventAvailableTickets
             <span className="font-semibold">{ticket.type}</span>
             <span className="text-xl font-bold">${ticket.price}</span>
           </div>
-          <div className="flex items-center text-zinc-400">
-            <Ticket size={16} className="mr-2" />
-            {ticket.availableTickets} tickets disponibles
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-zinc-400">
+              <Ticket size={16} className="mr-2" />
+              {ticket.availableTickets === 0 ? (
+                <span className="text-red-500 font-medium">Agotado</span>
+              ) : (
+                <span>{ticket.availableTickets} tickets disponibles</span>
+              )}
+            </div>
+            {ticket.availableTickets > 0 && (
+              <Link
+                href={`/events/${eventId}/buy-tickets?ticketType=${encodeURIComponent(ticket.type)}`}
+                className="btn-primary text-sm px-4 py-2"
+              >
+                Comprar
+              </Link>
+            )}
           </div>
         </div>
       ))}

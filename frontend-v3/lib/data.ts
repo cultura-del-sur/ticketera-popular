@@ -25,7 +25,7 @@ export const events: Event[] = [
     image: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f",
     tickets: [
       { type: "General", price: 25.00, availableTickets: 30 },
-      { type: "VIP", price: 45.00, availableTickets: 20 }
+      { type: "VIP", price: 45.00, availableTickets: 0 }
     ],
     tags: ["jazz", "experimental", "electrónica"]
   },
