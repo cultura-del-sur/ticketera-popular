@@ -1,12 +1,12 @@
 'use client';
 
 import { events } from '@/lib/data';
-import { useParams, useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, Calendar, MapPin, Ticket } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 const ticketSchema = z.object({
   quantity: z.number().min(1).max(10),
@@ -18,7 +18,6 @@ type TicketForm = z.infer<typeof ticketSchema>;
 
 export default function EventPage() {
   const params = useParams();
-  const router = useRouter();
   const event = events.find((e) => e.id === params.id);
 
   const {
@@ -68,7 +67,7 @@ export default function EventPage() {
           />
           <h1 className="text-3xl font-bold mb-4">{event.title}</h1>
           <p className="text-zinc-400 mb-4">{event.description}</p>
-          
+
           <div className="flex items-center text-zinc-400 mb-2">
             <Calendar size={20} className="mr-2" />
             {new Date(event.date).toLocaleDateString('es-ES', {
@@ -80,7 +79,7 @@ export default function EventPage() {
               minute: '2-digit',
             })}
           </div>
-          
+
           <div className="flex items-center text-zinc-400 mb-4">
             <MapPin size={20} className="mr-2" />
             {event.venue}
