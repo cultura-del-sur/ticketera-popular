@@ -19,7 +19,7 @@ interface BuyEventTicketsFormProps {
 }
 
 export default function BuyEventTicketsForm({ ticket, eventId }: BuyEventTicketsFormProps) {
-  const { type: ticketType } = ticket
+  const { type_slug: ticketType } = ticket
   const {
     register,
     handleSubmit,
@@ -39,7 +39,7 @@ export default function BuyEventTicketsForm({ ticket, eventId }: BuyEventTickets
 
   return (
     <div className="bg-zinc-900 p-6 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Comprar Tickets - {ticket.typeLabel}</h2>
+      <h2 className="text-xl font-bold mb-4">Comprar Tickets - {ticket.type_label}</h2>
 
       <div className="mb-6 p-4 bg-zinc-800 rounded-lg">
         <div className="flex justify-between items-center mb-2">
@@ -48,7 +48,7 @@ export default function BuyEventTicketsForm({ ticket, eventId }: BuyEventTickets
         </div>
         <div className="flex justify-between items-center">
           <span className="text-zinc-400">Tickets disponibles:</span>
-          <span>{ticket.availableTickets}</span>
+          <span>{ticket.available_tickets}</span>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export default function BuyEventTicketsForm({ ticket, eventId }: BuyEventTickets
             type="number"
             {...register('quantity', { valueAsNumber: true })}
             className="w-full bg-zinc-800 rounded px-3 py-2"
-            max={ticket.availableTickets}
+            max={ticket.available_tickets}
           />
           {errors.quantity && (
             <p className="text-red-500 text-sm mt-1">{errors.quantity.message}</p>

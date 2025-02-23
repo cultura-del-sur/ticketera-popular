@@ -19,7 +19,7 @@ export default function BuyTicketsPage() {
   const searchParams = useSearchParams();
   const ticketType = searchParams.get('ticketType');
   const event = events.find((e) => e.id === params.id);
-  const ticket = event?.tickets.find((t) => t.type === ticketType);
+  const ticket = event?.tickets.find((t) => t.type_slug === ticketType);
 
   if (!event || !ticket) {
     return (
@@ -45,9 +45,9 @@ export default function BuyTicketsPage() {
       </Link>
 
       <EventBrief
-        title={event.title}
+        title={event.name}
         description={event.description}
-        date={event.date}
+        date={event.datetime}
         venue={event.venue}
       />
 

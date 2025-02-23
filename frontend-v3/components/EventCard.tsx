@@ -13,12 +13,12 @@ export default function EventCard({ event }: EventCardProps) {
     <div className="event-card rounded-lg overflow-hidden">
       <img
         src={event.image}
-        alt={event.title}
+        alt={event.name}
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-        <EventDate date={event.date} />
+        <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
+        <EventDate date={event.datetime} />
         <EventLocation venue={event.venue} />
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold">Tickets desde ${Math.min(...event.tickets.map(t => t.price))}</span>

@@ -56,9 +56,9 @@ export default function EventPage() {
 
       <div className="space-y-8">
         <div>
-          <EventDetailImage image={event.image} title={event.title} />
-          <EventDetailTitle title={event.title} description={event.description} />
-          <EventDate date={event.date} />
+          <EventDetailImage image={event.image} title={event.name} />
+          <EventDetailTitle title={event.name} description={event.description} />
+          <EventDate date={event.datetime} />
           <EventLocation venue={event.venue} />
           <EventAvailableTickets tickets={event.tickets} eventId={event.id} />
           <EventVenueLocation venue={event.venue} />
