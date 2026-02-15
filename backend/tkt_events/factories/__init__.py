@@ -1,3 +1,4 @@
+import datetime
 import random
 import factory
 from djmoney.money import Money
@@ -16,7 +17,7 @@ class EventFactory(factory.django.DjangoModelFactory):
     name = factory.LazyFunction(lambda: random.choice(culture_events))
     description = factory.faker.Faker("text")
     venue = factory.LazyFunction(lambda: random_item_from_qs(Venue.objects.all()))
-    datetime = factory.Faker("date_time_this_year")
+    datetime = factory.Faker("date_time_this_year", tzinfo=datetime.timezone.utc)
 
 
 class TicketTypeFactory(factory.django.DjangoModelFactory):
