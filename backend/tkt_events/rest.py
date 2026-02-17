@@ -75,5 +75,5 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     @action(detail=False, methods=["get"], url_path="featured")
     def featured(self, request):
         events = event_list_featured()
-        serializer = EventSerializer(events, many=True)
+        serializer = EventSerializer(events, many=True, context={"request": request})
         return Response(serializer.data)
