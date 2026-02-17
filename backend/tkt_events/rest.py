@@ -1,6 +1,11 @@
 import random
+
 from rest_framework import serializers, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from .models import Event, EventTicketType
+from .services import event_list_featured
 from tkt_venues.models import Venue
 
 
@@ -67,3 +72,9 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+    @action(detail=False, methods=["get"], url_path="featured")
+    def featured(self, request):
+        events = event_list_featured()
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)

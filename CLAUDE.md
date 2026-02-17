@@ -64,8 +64,10 @@ pnpm lint      # ESLint
 ### Backend conventions
 
 - We follow HackSoft Django Styleguide: https://github.com/HackSoftware/Django-Styleguide
+- Business logic (queries and mutations) goes in `services.py` per app — no separate `selectors.py`
 - All models extend `shared.BaseModel`
-- REST logic (serializers + viewsets) goes in `rest.py` per app
+- All REST logic (serializers, viewsets) goes in `rest.py` per app — no separate `apis.py` or `views.py`
+- Custom endpoints use DRF `@action` decorators on ViewSets instead of standalone `APIView` classes
 - URL routing via DRF `DefaultRouter` in per-app `urls.py`, aggregated in `config/urls.py`
 - Management commands extend `shared.commands.BaseCommand`
 - Fake data for seeding lives in `<app>/factories/fake_data.py`
@@ -74,6 +76,7 @@ pnpm lint      # ESLint
 ### API endpoints
 
 - `GET /api/events/`, `GET /api/events/{id}/` — ReadOnlyModelViewSet
+- `GET /api/events/featured/` — Featured events (@action + selector)
 - `POST /api/token/`, `POST /api/token/refresh/` — JWT
 - `/admin/` — Django Admin
 
