@@ -1,18 +1,32 @@
-// const useEventsList = () => {
-//   const { data, isLoading, isError, isSuccess } = useQuery({
-//     queryKey: ['events'],
-//     queryFn: () => fetchEvents(),
-//   })
-//   return {
-//     events: data,
-//     isLoading,
-//     isError,
-//     isSuccess,
-//   }
-// }
+'use client'
 
-// const useSchoolList = listHook<T_GetSchoolsListResponse>(
-//   'http://127.0.0.1:8000/api/schools',
-//   axiosGet,
-//   useAuthResources,
-// )
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { I_Event } from '@/tkt_events/types'
+import { API_BASE } from '@/config'
+
+const useFeaturedEvents = () => {
+  const [events, setEvents] = useState<Array<I_Event>>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    axios
+      .get<Array<I_Event>>(`${API_BASE}/api/events/featured/`)
+      .then((res) => {
+        console.log({ res });
+
+        setEvents(res.data)
+      })
+      .catch((err) => {
+        setError(err.message)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [])
+
+  return { events, isLoading, error }
+}
+
+export { useFeaturedEvents }

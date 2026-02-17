@@ -1,8 +1,7 @@
-import { Venue } from '@/lib/data';
 import { MapPin } from 'lucide-react';
 
 interface EventLocationProps {
-  venue: Venue;
+  venue: { name: string };
 }
 
 export default function EventLocation({ venue }: EventLocationProps) {

@@ -6,6 +6,7 @@ import {
   T_AllowedAccessGroups,
 } from '@/tkt_auth/types'
 
+import { API_BASE } from '@/config'
 import { axiosPost } from '@/shared/data/axios'
 import { T_TokenRefresher } from '@/shared/data/types'
 import { postService } from '@/shared/service'
@@ -27,7 +28,7 @@ const useAuthResources = (): I_AuthResources => {
   const storeRefreshedToken = (accessToken: string) => { }
 
   const refresh: T_TokenRefresher = (postMethod) => async (data) => {
-    return postMethod('http://localhost:8000/api/token/refresh/', data).then((res) => {
+    return postMethod(`${API_BASE}/api/token/refresh/`, data).then((res) => {
       storeRefreshedToken(res.access)
       return res
     })
@@ -51,7 +52,7 @@ const useStoreAuthData = () => {
 }
 
 const useAuthorize = () => {
-  const path = 'http://localhost:8000/api/token/'
+  const path = `${API_BASE}/api/token/`
   return postService<I_AuthorizeRequestData, I_AuthorizeResponseData>(path, axiosPost)()
 }
 
