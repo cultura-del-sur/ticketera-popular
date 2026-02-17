@@ -16,6 +16,11 @@ class Event(BaseModel):
     tags = models.ManyToManyField("tkt_core.Tag", blank=True)
     is_featured = models.BooleanField(default=False)
 
+    @property
+    def featured_image(self):
+        first = self.images.first()
+        return first.image if first else None
+
     def __str__(self):
         return f"{self.venue} - {self.name} ({self.datetime.strftime('%d/%m/%Y, %H:%M')})"
 
@@ -45,6 +50,22 @@ class EventTicketType(BaseModel):
                 name="unique_event_ticket_type",
             )
         ]
+
+
+class EventImage(BaseModel):
+    """
+    An image associated with an event.
+    """
+
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to="events/")
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta(BaseModel.Meta):
+        ordering = ["order", "created_at"]
+
+    def __str__(self):
+        return f"{self.event.name} - image {self.order}"
 
 
 class TicketType(BaseModel):

@@ -1,10 +1,8 @@
-import random
-
 from rest_framework import serializers, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import Event, EventTicketType
+from .models import Event, EventImage, EventTicketType
 from .services import event_list_featured
 from tkt_venues.models import Venue
 
@@ -38,10 +36,18 @@ class EventVenueSerializer(serializers.ModelSerializer):
         }
 
 
+class EventImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventImage
+        fields = ["id", "image"]
+
+
 class EventSerializer(serializers.ModelSerializer):
     tickets = EventTicketTypeSerializer(source="eventtickettype_set", many=True, read_only=True)
     venue = EventVenueSerializer(read_only=True)
-    image = serializers.SerializerMethodField()
+    images = EventImageSerializer(many=True, read_only=True)
+
+    featured_image = serializers.ImageField(read_only=True)
 
     class Meta:
         model = Event
@@ -51,18 +57,11 @@ class EventSerializer(serializers.ModelSerializer):
             "description",
             "datetime",
             "venue",
-            "image",
+            "featured_image",
+            "images",
             "tickets",
             "tags",
         ]
-
-    def get_image(self, obj):
-        images = [
-            "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f",
-            "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
-            "https://images.unsplash.com/photo-1468164016595-6108e4c60c8b",
-        ]
-        return random.choice(images)
 
 
 class EventViewSet(viewsets.ReadOnlyModelViewSet):

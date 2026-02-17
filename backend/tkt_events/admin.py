@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from tkt_events.models import Event, EventTicketType, TicketType
+from tkt_events.models import Event, EventImage, EventTicketType, TicketType
+
+
+class EventImageInline(admin.TabularInline):
+    model = EventImage
+    extra = 1
 
 
 @admin.register(Event)
@@ -25,6 +30,7 @@ class EventAdmin(admin.ModelAdmin):
     list_editable = [
         "is_featured",
     ]
+    inlines = [EventImageInline]
 
 
 @admin.register(EventTicketType)
