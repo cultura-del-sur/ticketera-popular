@@ -14,8 +14,6 @@ const useFeaturedEvents = () => {
     axios
       .get<Array<I_Event>>(`${API_BASE}/api/events/featured/`)
       .then((res) => {
-        console.log({ res });
-
         setEvents(res.data)
       })
       .catch((err) => {
