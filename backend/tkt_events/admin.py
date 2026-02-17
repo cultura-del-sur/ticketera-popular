@@ -9,6 +9,7 @@ class EventAdmin(admin.ModelAdmin):
         "name",
         "venue",
         "datetime",
+        "is_featured",
     ]
     search_fields = [
         "name",
@@ -19,6 +20,10 @@ class EventAdmin(admin.ModelAdmin):
         "venue",
         "datetime",
         "tags",
+        "is_featured",
+    ]
+    list_editable = [
+        "is_featured",
     ]
 
 

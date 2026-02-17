@@ -14,6 +14,7 @@ class Event(BaseModel):
     venue = models.ForeignKey("tkt_venues.Venue", on_delete=models.CASCADE)
     datetime = models.DateTimeField()
     tags = models.ManyToManyField("tkt_core.Tag", blank=True)
+    is_featured = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.venue} - {self.name} ({self.datetime.strftime('%d/%m/%Y, %H:%M')})"

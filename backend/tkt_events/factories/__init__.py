@@ -18,6 +18,7 @@ class EventFactory(factory.django.DjangoModelFactory):
     description = factory.faker.Faker("text")
     venue = factory.LazyFunction(lambda: random_item_from_qs(Venue.objects.all()))
     datetime = factory.Faker("date_time_this_year", tzinfo=datetime.timezone.utc)
+    is_featured = False
 
 
 class TicketTypeFactory(factory.django.DjangoModelFactory):
