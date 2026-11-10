@@ -1,3 +1,4 @@
 *.DS_Store
 *.python-version
-backend/media/*
+_bmad/config.user.yaml
+_bmad/config.user.toml

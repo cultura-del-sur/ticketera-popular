@@ -1,8 +1,0 @@
-venv/
-.env
-*.pyc
-pyvenv.cfg
-bin/
-lib/
-lib64/
-include/
